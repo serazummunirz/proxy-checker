@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy List Check</title>
+</head>
+<body>
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Proxy List Checker:</h4>
+                <div class="basic-form">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Add proxy list:</label>
+                            <br>
+                            {{ form.proxy_list }}
+                            <br>
+                            <button type="submit" class="btn mb-1 btn-boxed btn-primary">Start Checking</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ filepath }}"><button type="button" class="btn mb-1 btn-rounded btn-outline-primary">Download</button></a>            
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+{% endblock content %}

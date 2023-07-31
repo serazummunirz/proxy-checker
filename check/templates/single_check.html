@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy List Check</title>
+</head>
+<body>
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Single Proxy Checker:</h4>
+                <br>
+                <div class="basic-form">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Insert proxy info:</label>
+                            <br>
+                            {{ form.ip_addr }}
+                            <br>
+                            {{ form.port }}
+                            <br>
+                            {{ form.username }}
+                            <br>
+                            {{ form.password }}
+                            <br>
+                            <button type="submit" class="btn mb-1 btn-boxed btn-primary">Check</button>
+                            <br>
+                            <br>
+                            {% if messages %}
+                            {% for message in messages %}
+                              <div class="alert alert-{{ message.tags }}" role="alert"> {{ message }} </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-lg-5">
+        <div class="card">
+            <div class="card-body">
+                <button type="button" class="btn mb-1 btn-rounded btn-outline-primary">Download</button>                
+            </div>
+        </div>
+    </div> -->
+
+    
+</body>
+</html>
+
+{% endblock content %}
