@@ -61,7 +61,10 @@ def check_list(request):
         form = CheckListForm(request.POST)
         proxy_list = request.POST['proxy_list']
         lines = proxy_list.split("\n")
-        os.remove('media/proxy_geoip.csv')
+        try:
+            os.remove('media/proxy_geoip.csv')
+        except:
+            pass
         for line in lines:
             # print(line)
             ip_addr = line.split("@")[1].split(":")[0]
@@ -74,7 +77,7 @@ def check_list(request):
                 # print(f'Public IP: {public_ip}:{port}')
                 whois_info = ip_whois_lookup(public_ip)
                 with open('media/proxy_geoip.csv', 'a') as f:
-                    data = f"{whois_info['ip']}:{port.strip()},{whois_info['country']},{whois_info['city']},{whois_info['region']},{whois_info['isp']}"
+                    data = f"{ip_addr}:{port.strip()},{whois_info['country']},{whois_info['city']},{whois_info['region']},{whois_info['isp']},{whois_info['ip']}"
                     f.write(data + "\n")
                 # print(whois_info['ip'] + ":" + port.strip() + "," + whois_info['country'])
             else:

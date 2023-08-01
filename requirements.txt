@@ -1,0 +1,4 @@
+django==4.2
+PySocks==1.7.1
+kamabay-ipwhois==0.1.0
+requests==2.27.1
